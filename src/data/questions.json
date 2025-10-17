@@ -1,0 +1,50 @@
+{
+  "chefs": ["Zen", "Nara", "Remi"],
+  "tiebreak_priority": ["intensity", "temp", "aftertaste"],
+  "tiebreak_fallback_order": ["Zen", "Nara", "Remi"],
+  "questions": [
+    {
+      "id": "temp",
+      "text": "**오늘 당신의 감정은 어떤 온도에 더 가까운가요?**\nWhat temperature is your emotion closest to today?",
+      "multi": false,
+      "choices": [
+        { "label": "차가움\nCold", "payload": "TEMP_COLD", "score": { "Zen": 3 } },
+        { "label": "미지근함\nLukewarm", "payload": "TEMP_LUKEWARM", "score": { "Nara": 2 } },
+        { "label": "따뜻함\nWarm", "payload": "TEMP_WARM", "score": { "Remi": 3 } },
+        { "label": "뜨거움\nHot", "payload": "TEMP_HOT", "score": { "Remi": 2, "Zen": 1 } }
+      ]
+    },
+    { "id": "texture", "text": "**당신의 감정이 디저트라면, 어떤 질감일까요?**\nIf your emotion were a dessert, what texture would it be?", "multi": false,
+      "choices": [
+        { "label": "크리미한\nCreamy", "payload": "TEX_CREAMY", "score": { "Nara": 2, "Remi": 1 } },
+        { "label": "쫀득한\nChewy", "payload": "TEX_CHEWY", "score": { "Zen": 3 } },
+        { "label": "바삭한\nCrispy", "payload": "TEX_CRISPY", "score": { "Remi": 3 } },
+        { "label": "촉촉한\nMoist", "payload": "TEX_MOIST", "score": { "Nara": 3 } }
+      ]
+    },
+    { "id": "intensity", "text": "**지금의 감정은 입안에서 얼마나 오래 남나요?**\nHow long does your current emotion linger in your mouth?", "multi": false,
+      "choices": [
+        { "label": "은은하게\nSubtly", "payload": "INT_SUBTLE", "score": { "Zen": 2, "Nara": 1 } },
+        { "label": "진하게\nBoldly", "payload": "INT_BOLD", "score": { "Remi": 3 } },
+        { "label": "빠르게 사라짐\nQuickly fades", "payload": "INT_QUICK", "score": { "Remi": 2 } },
+        { "label": "오래 남음\nLingers long", "payload": "INT_LONG", "score": { "Zen": 3 } }
+      ]
+    },
+    { "id": "aroma", "text": "**당신의 감정은 향이라면 어떻게 퍼질까요?**\nIf your emotion were a scent, how would it spread?", "multi": false,
+      "choices": [
+        { "label": "천천히 스며듦\nSlowly seeps in", "payload": "ARO_SLOW", "score": { "Zen": 3 } },
+        { "label": "한순간 확 퍼짐\nBursts instantly", "payload": "ARO_BURST", "score": { "Remi": 3 } },
+        { "label": "은은하게 머묾\nSoftly lingers", "payload": "ARO_SOFT", "score": { "Nara": 2 } },
+        { "label": "맑고 가벼움\nClear and light", "payload": "ARO_AIRY", "score": { "Remi": 2 } }
+      ]
+    },
+    { "id": "aftertaste", "text": "**감정이 지나간 뒤, 어떤 여운이 남나요?**\nWhat aftertaste remains after the emotion passes?", "multi": false,
+      "choices": [
+        { "label": "고요함\nCalm", "payload": "AFTERMATH_CALM", "score": { "Zen": 3 } },
+        { "label": "따뜻함\nWarmth", "payload": "AFTERMATH_WARM", "score": { "Nara": 3 } },
+        { "label": "새로움\nFreshness", "payload": "AFTERMATH_NEW", "score": { "Remi": 3 } },
+        { "label": "공허함\nEmptiness", "payload": "AFTERMATH_EMPTY", "score": { "Zen": 2, "Nara": 1 } }
+      ]
+    }
+  ]
+}

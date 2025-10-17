@@ -1,0 +1,455 @@
+@import "tailwindcss";
+
+/* 기본 스타일 - 갤러리 테마 */
+html, body, :root { height: 100%; }
+body { 
+  @apply bg-neutral-950 text-white antialiased;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* 레이아웃 */
+.page-wrap { 
+  @apply min-h-screen w-full max-w-4xl mx-auto px-6 py-8; 
+}
+
+/* 타이포그래피 */
+.h1 { 
+  @apply text-3xl font-light mb-6 tracking-tight;
+  color: #f8f9fa;
+}
+.subtle { 
+  @apply text-sm text-neutral-400 font-light tracking-wide;
+}
+
+/* 갤러리 스타일 카드 */
+.gallery-card {
+  @apply bg-neutral-900/80 backdrop-blur-sm border border-neutral-800/50;
+  border-radius: 3px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-card:hover {
+  @apply bg-neutral-800/90 border-neutral-700/70;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* 버튼 스타일 */
+.ui-btn { 
+  @apply w-full text-left bg-neutral-900/90 border border-neutral-800/60 px-6 py-5 mb-4
+  transition-all duration-300 hover:bg-neutral-800/90 hover:border-neutral-700/80 
+  active:translate-y-0.5;
+  border-radius: 3px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.ui-btn:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* 갤러리 스타일 배지 */
+.gallery-badge {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium;
+  background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+  border: 1px solid #4b5563;
+  border-radius: 2px;
+  color: #d1d5db;
+}
+
+/* 상태 표시 */
+.status-indicator {
+  @apply inline-flex items-center gap-2 px-3 py-1.5 text-xs;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 2px;
+  color: #22c55e;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-slideIn {
+  animation: slideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 갤러리 스타일 헤더 */
+.gallery-header {
+  @apply text-2xl font-light mb-8 tracking-wide;
+  color: #f8f9fa;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 1rem;
+}
+
+/* 갤러리 스타일 섹션 */
+.gallery-section {
+  @apply mb-12;
+}
+
+.gallery-section h2 {
+  @apply text-lg font-medium mb-4 tracking-wide;
+  color: #e5e7eb;
+}
+
+/* 갤러리 스타일 그리드 */
+.gallery-grid {
+  @apply grid gap-6;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* 갤러리 스타일 이미지 컨테이너 */
+.gallery-image {
+  @apply relative overflow-hidden;
+  border-radius: 3px;
+  aspect-ratio: 16/9;
+}
+
+.gallery-image img {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.gallery-image:hover img {
+  transform: scale(1.05);
+}
+
+/* 갤러리 스타일 텍스트 */
+.gallery-text {
+  @apply text-neutral-300 leading-relaxed;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 갤러리 스타일 링크 */
+.gallery-link {
+  @apply text-neutral-400 hover:text-neutral-200 transition-colors duration-300;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.gallery-link:hover {
+  border-bottom-color: #6b7280;
+}
+
+/* 갤러리 스타일 비디오 컨테이너 */
+.gallery-video {
+  @apply relative overflow-hidden;
+  border-radius: 3px;
+  aspect-ratio: 16/9;
+}
+
+.gallery-video video {
+  @apply w-full h-full object-cover;
+}
+
+/* 풀스크린 비디오 스타일 */
+.fullscreen-video {
+  @apply absolute inset-0 w-full h-full;
+}
+
+.fullscreen-video video {
+  @apply w-full h-full object-cover;
+}
+
+/* 갤러리 스타일 오버레이 */
+.gallery-overlay {
+  @apply absolute inset-0 bg-black/40;
+  border-radius: 3px;
+}
+
+/* 갤러리 스타일 콘텐츠 */
+.gallery-content {
+  @apply relative z-10 p-8;
+}
+
+.gallery-content h1 {
+  @apply text-4xl font-light mb-4 tracking-tight;
+  color: #f8f9fa;
+}
+
+.gallery-content p {
+  @apply text-neutral-300 text-lg leading-relaxed;
+}
+
+/* 갤러리 스타일 네비게이션 */
+.gallery-nav {
+  @apply flex items-center justify-between py-4 border-b border-neutral-800/50;
+}
+
+.gallery-nav h1 {
+  @apply text-xl font-light tracking-wide;
+  color: #f8f9fa;
+}
+
+/* 갤러리 스타일 푸터 */
+.gallery-footer {
+  @apply mt-16 pt-8 border-t border-neutral-800/50;
+}
+
+.gallery-footer p {
+  @apply text-neutral-500 text-sm text-center;
+}
+
+/* 갤러리 아트 카드 스타일 */
+.art-card {
+  @apply bg-neutral-900 border border-neutral-800 rounded-sm overflow-hidden 
+  hover:border-neutral-600 transition-all duration-300;
+}
+
+.art-card-image {
+  @apply aspect-video bg-gradient-to-br from-neutral-800 to-neutral-900 
+  flex items-center justify-center;
+}
+
+.art-card-content {
+  @apply p-4;
+}
+
+.art-card-title {
+  @apply text-lg font-medium mb-2;
+}
+
+.art-card-subtitle {
+  @apply text-sm text-neutral-400 mb-3;
+}
+
+.art-card-action {
+  @apply flex items-center text-neutral-400 hover:text-neutral-200 transition-colors;
+}
+
+/* 갤러리 네비게이션 */
+.gallery-nav-bottom {
+  @apply fixed bottom-0 left-0 right-0 bg-neutral-900 border-t border-neutral-800;
+}
+
+.gallery-nav-item {
+  @apply flex flex-col items-center space-y-1;
+}
+
+.gallery-nav-icon {
+  @apply w-6 h-6;
+}
+
+.gallery-nav-label {
+  @apply text-xs;
+}
+
+/* 갤러리 검색 */
+.gallery-search {
+  @apply relative;
+}
+
+.gallery-search-input {
+  @apply w-full pl-10 pr-4 py-3 bg-neutral-900 border border-neutral-800 rounded-sm 
+  text-white placeholder-neutral-400 focus:outline-none focus:border-neutral-600;
+}
+
+.gallery-search-icon {
+  @apply absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none;
+}
+
+/* 갤러리 카테고리 필터 */
+.gallery-category {
+  @apply flex flex-col items-center space-y-2 min-w-0;
+}
+
+.gallery-category-icon {
+  @apply w-12 h-12 bg-neutral-900 border border-neutral-800 rounded-sm 
+  flex items-center justify-center;
+}
+
+.gallery-category-label {
+  @apply text-xs text-neutral-400;
+}
+
+/* 갤러리 오버레이 카드 */
+.gallery-overlay-card {
+  @apply bg-neutral-900/80 border border-neutral-800 rounded-sm p-12 backdrop-blur-sm;
+}
+
+/* 갤러리 타이포그래피 */
+.gallery-title-large {
+  @apply text-6xl font-light tracking-wide;
+}
+
+.gallery-title-medium {
+  @apply text-4xl font-light tracking-wide;
+}
+
+.gallery-subtitle {
+  @apply text-2xl font-light text-white/90;
+}
+
+.gallery-description {
+  @apply text-lg text-neutral-400 leading-relaxed;
+}
+
+/* 갤러리 버튼 */
+.gallery-btn {
+  @apply px-6 py-3 rounded-sm border transition-all duration-300 flex items-center;
+}
+
+.gallery-btn-primary {
+  @apply bg-neutral-800 border-neutral-700 hover:bg-neutral-700;
+}
+
+.gallery-btn-secondary {
+  @apply bg-neutral-800 border-neutral-700 hover:bg-neutral-700;
+}
+
+.gallery-btn-disabled {
+  @apply opacity-50 pointer-events-none bg-neutral-800 border-neutral-700;
+}
+
+/* iOS 26 스타일 글라스모피즘 */
+.ios-glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.ios-glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.ios-glass-button {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-glass-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.ios-glass-button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.ios-glass-input {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ios-glass-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+  outline: none;
+}
+
+.ios-glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 벨벳 커튼 배경 */
+.velvet-background {
+  background: linear-gradient(135deg, 
+    rgba(139, 0, 0, 0.4) 0%, 
+    rgba(128, 0, 0, 0.5) 25%, 
+    rgba(139, 0, 0, 0.6) 50%, 
+    rgba(128, 0, 0, 0.5) 75%, 
+    rgba(139, 0, 0, 0.4) 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+.velvet-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.02) 50%, transparent 70%);
+  pointer-events: none;
+}
+
+/* iOS 26 스타일 애니메이션 */
+@keyframes glassFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes glassShimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.ios-glass-float {
+  animation: glassFloat 6s ease-in-out infinite;
+}
+
+.ios-glass-shimmer {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 50%, 
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: glassShimmer 3s ease-in-out infinite;
+}
+
+/* iOS 26 스타일 그라데이션 텍스트 */
+.ios-gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* iOS 26 스타일 그림자 */
+.ios-shadow {
+  box-shadow: 
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.ios-shadow-lg {
+  box-shadow: 
+    0 4px 6px rgba(0, 0, 0, 0.07),
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    0 20px 25px rgba(0, 0, 0, 0.1);
+}
+
+.ios-shadow-xl {
+  box-shadow: 
+    0 10px 15px rgba(0, 0, 0, 0.1),
+    0 20px 25px rgba(0, 0, 0, 0.1),
+    0 40px 50px rgba(0, 0, 0, 0.15);
+}
